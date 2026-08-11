@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok Autorisierung</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
+    #code-box { background: #f0f0f0; padding: 16px; border-radius: 8px; word-break: break-all; font-size: 18px; margin-top: 20px; }
+    button { margin-top: 16px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Autorisierung erfolgreich</h2>
+  <p>Kopiere den folgenden Code und füge ihn im Terminal ein:</p>
+  <div id="code-box">wird geladen ...</div>
+  <button onclick="copyCode()">Code kopieren</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const box = document.getElementById("code-box");
+    box.textContent = code ? code : "Kein Code gefunden – ist etwas schiefgelaufen?";
+
+    function copyCode() {
+      navigator.clipboard.writeText(box.textContent);
+      alert("Kopiert!");
+    }
+  </script>
+</body>
+</html>
